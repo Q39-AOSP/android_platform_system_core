@@ -562,6 +562,8 @@ on boot
     chown system system /sys/class/leds/keyboard-backlight/brightness
     chown system system /sys/class/leds/lcd-backlight/brightness
     chown system system /sys/class/leds/button-backlight/brightness
+    chown system system /sys/class/leds/singal-light/brightness
+    chown system system /sys/class/leds/singal-light/blink
     chown system system /sys/class/leds/jogball-backlight/brightness
     chown system system /sys/class/leds/red/brightness
     chown system system /sys/class/leds/red/blink
@@ -578,7 +580,20 @@ on boot
     chown system system /sys/kernel/ipv4/tcp_rmem_min
     chown system system /sys/kernel/ipv4/tcp_rmem_def
     chown system system /sys/kernel/ipv4/tcp_rmem_max
+    chown system system /dev/hotknot
+    chmod 0660 /dev/hotknot
+    chown system system /sys/gtp_test/rawdata
+    chmod 0660 /sys/gtp_test/rawdata
+    chown system system /sys/class/TP-UNLOCK/device/gesture
+    chmod 0660 /sys/class/TP-UNLOCK/device/gesture
+
     chown root radio /proc/cmdline
+
+    chmod 0660 /sys/class/input/input4/offset
+    chown input system /sys/class/input/input4/offset
+    chown system input /dev/input/event4
+
+    chown system system /persist/compass_lib.cfg
 
     # Define default initial receive window size in segments.
     setprop net.tcp.default_init_rwnd 60
@@ -594,8 +609,8 @@ on nonencrypted
 on property:sys.init_log_level=*
     loglevel ${sys.init_log_level}
 
-on charger
-    class_start charger
+#on charger
+#    class_start charger
 
 on property:vold.decrypt=trigger_reset_main
     class_reset main
