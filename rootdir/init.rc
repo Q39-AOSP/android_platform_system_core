@@ -687,3 +687,13 @@ on property:ro.debuggable=1
 service flash_recovery /system/bin/install-recovery.sh
     class main
     oneshot
+
+service mpu6050_gyro_cal /system/bin/mpu6050_gyro_cal load
+	class main
+	oneshot
+	seclabel u:r:mpu6050_gyro_cal:s0
+
+service compass_lib_cfg /system/bin/compass_lib_cfg
+	class main
+	oneshot
+	seclabel u:r:compass_lib_cfg:s0
